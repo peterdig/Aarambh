@@ -10,6 +10,11 @@ export default {
       center: true,
       padding: "2rem",
     },
+    fontFamily: {
+      sans: ['Poppins', 'sans-serif'],
+      serif: ['Poppins', 'serif'],
+      mono: ['Poppins', 'monospace'],
+    },
     extend: {
       colors: {
         border: "hsl(var(--border))",

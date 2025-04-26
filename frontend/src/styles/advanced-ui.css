@@ -23,6 +23,9 @@
   --transition-slow: 0.5s;
   --transition-medium: 0.3s;
   --transition-fast: 0.15s;
+  
+  /* Font family */
+  --font-family: 'Poppins', sans-serif;
 }
 
 [data-theme="dark"] {
@@ -45,10 +48,12 @@ body {
   background-color: var(--background);
   color: var(--text);
   transition: background-color var(--transition-medium) ease, color var(--transition-medium) ease;
+  font-family: var(--font-family);
 }
 
 /* Global transitions for theme changes */
 .app-container * {
+  font-family: var(--font-family);
   transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter;
   transition-timing-function: ease;
   transition-duration: var(--transition-medium);

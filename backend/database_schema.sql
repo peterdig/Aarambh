@@ -4,11 +4,33 @@ CREATE TABLE public.profiles (
   full_name TEXT,
   email TEXT UNIQUE NOT NULL,
   avatar_url TEXT,
+  bio TEXT DEFAULT 'STEM enthusiast looking to explore new opportunities.',
+  interests TEXT[] DEFAULT ARRAY['Computer Science', 'Mathematics', 'Robotics'],
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   total_points INTEGER DEFAULT 0,
   achievement_count INTEGER DEFAULT 0
 );
+
+-- Create a function that creates a profile entry when a new user signs up
+CREATE OR REPLACE FUNCTION public.handle_new_user()
+RETURNS TRIGGER AS $$
+BEGIN
+  INSERT INTO public.profiles (id, full_name, email, avatar_url)
+  VALUES (
+    NEW.id,
+    NEW.raw_user_meta_data->>'full_name',
+    NEW.email,
+    NEW.raw_user_meta_data->>'avatar_url'
+  );
+  RETURN NEW;
+END;
+$$ LANGUAGE plpgsql SECURITY DEFINER;
+
+-- Create a trigger that calls the function when a new user is created
+CREATE TRIGGER on_auth_user_created
+  AFTER INSERT ON auth.users
+  FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
 -- Create achievements table
 CREATE TABLE public.achievements (
@@ -98,6 +120,10 @@ CREATE POLICY "Public profiles are viewable by everyone."
 CREATE POLICY "Users can update own profile."
   ON public.profiles FOR UPDATE
   USING (auth.uid() = id);
+
+CREATE POLICY "Users can insert own profile."
+  ON public.profiles FOR INSERT
+  WITH CHECK (auth.uid() = id);
 
 -- Achievements: Anyone can read achievements
 ALTER TABLE public.achievements ENABLE ROW LEVEL SECURITY;
