@@ -1,22 +1,24 @@
 # Aarambh
 
-A modern web application to help students in rural India access career counseling, real-time scholarship information, and learning opportunities.
+A modern web application to help students in rural India access career counseling, real-time scholarship information, and learning opportunities, with special focus on accessibility for visually impaired students.
 
 ## Features
 
-- 🤖 AI-powered career guidance chatbot with voice support
+- 🤖 AI-powered STEM assistant with voice support for visually impaired students
+- 🎯 Interactive career guidance through domain-specific quizzes
 - 📚 Real-time Indian scholarships & career opportunities
-- 📱 Parent communication via WhatsApp
-- 📅 Calendar event creation
-- 🌐 Multilingual support (English, Hindi, Kannada)
-- 🎓 Learning resources integration
+- 📅 Calendar event creation for important dates
+- 🌐 Multilingual support (English, Hindi)
+- 🎮 Gamification with achievements to motivate learning
+- 🧠 Educational content with visual and auditory learning modes
+- 🔍 Job locations mapping for career planning
 
 ## Tech Stack
 
-- Frontend: React (Vite), Tailwind CSS, React Router, i18next
+- Frontend: React (Vite), Tailwind CSS, React Router, i18next, Framer Motion
 - Backend: FastAPI (Python), Uvicorn
 - Database: Supabase (PostgreSQL & Storage)
-- Integrations: Web Speech API, Twilio, Google Calendar API, A-Frame
+- Integrations: Web Speech API, Google Calendar API, Mapbox
 
 ## Setup Instructions
 
@@ -25,7 +27,6 @@ A modern web application to help students in rural India access career counselin
 - Node.js (v16 or higher)
 - Python (v3.8 or higher)
 - Supabase account
-- Twilio account
 - Google Cloud account (for Calendar API)
 
 ### Installation
